@@ -2,10 +2,8 @@ resource "aws_s3_bucket" "demo-data-lake" {
   bucket = "demo_data_ingestion_data_lake"
 
   tags = {
-    Name        = "demo_data_ingestion_data_lake"
-    Environment = "Prod"
-    Managed_by = "terraform"
-    Team = "DE"
+    name = locals.Name,
+    team = locals.Team,
   }
 }
 
