@@ -1,5 +1,5 @@
 resource "aws_iam_role" "redshift_role" {
-  name = "amdari_redshift_role"
+  name = "demo_redshift_role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -20,7 +20,6 @@ resource "aws_iam_role" "redshift_role" {
   }
 }
 
-
 resource "aws_iam_role_policy" "redshift_policy" {
   name = "redshift_policy"
   role = aws_iam_role.redshift_role.id
@@ -37,4 +36,9 @@ resource "aws_iam_role_policy" "redshift_policy" {
       },
     ]
   })
+}
+
+resource "aws_iam_role_policy_attachment" "demo-policy-attachment" {
+  role       = aws_iam_role.redshift_role.name
+  policy_arn = aws_iam_policy.redshift_policy.arn
 }
