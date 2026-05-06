@@ -1,34 +1,34 @@
-resource "aws_s3_bucket" "demo-data-lake" {
-  bucket = "demo_data_ingestion_data_lake"
+# resource "aws_s3_bucket" "demo-data-lake" {
+#   bucket = "demo-data-ingestion-data-lake"
 
-  tags = {
-    name = locals.Name,
-    team = locals.Team,
-  }
-}
+#   tags = {
+#     name = local.Name,
+#     team = local.Team,
+#   }
+# }
 
-resource "aws_s3_bucket_versioning" "s3_versioning" {
-  bucket = aws_s3_bucket.demo-data-lake.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+# resource "aws_s3_bucket_versioning" "s3_versioning" {
+#   bucket = aws_s3_bucket.demo-data-lake.id
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
 
-resource "aws_s3_bucket_lifecycle_configuration" "bucket_lifecycle_config" {
-  bucket = aws_s3_bucket.demo-data-lake.id
+# resource "aws_s3_bucket_lifecycle_configuration" "bucket_lifecycle_config" {
+#   bucket = aws_s3_bucket.demo-data-lake.id
 
-  rule {
-    id = "log"
+#   rule {
+#     id = "log"
 
-    expiration {
-      days = 90
-    }
+#     expiration {
+#       days = 90
+#     }
 
-    status = "Enabled"
+#     status = "Enabled"
 
-    transition {
-      days          = 30
-      storage_class = "GLACIER"
-    }
-  }
-}
+#     transition {
+#       days          = 30
+#       storage_class = "GLACIER"
+#     }
+#   }
+# }
